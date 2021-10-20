@@ -1,4 +1,8 @@
-<div class="container px-5 px-sm-0">
+<% if flash[:notice] %>
+  <p class="notice text-success"><%= flash[:notice] %></p>
+<% end %>
+
+<div class="container px-5 px-sm-0 mt-3">
   <div class="row">
     
     <%= render 'books/list',books: @book %>
