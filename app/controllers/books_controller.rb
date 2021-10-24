@@ -1,7 +1,4 @@
 class BooksController < ApplicationController
-  def new
-    @book = Book.new
-  end
 
   def create
     @book = Book.new(book_params)
@@ -20,14 +17,12 @@ class BooksController < ApplicationController
     @books = Book.all
     @book = Book.new
     @user = current_user
-    @users = User.all
   end
 
   def show
     @book = Book.find(params[:id])
     @book_new = Book.new
     @user = @book.user
-    @books = Book.all
   end
   
   def edit
@@ -46,7 +41,6 @@ class BooksController < ApplicationController
       flash[:notice] = "You have updated book successfully."
       redirect_to book_path(@book.id)
     else
-      @books = Book.all
       render :edit
     end
   end
