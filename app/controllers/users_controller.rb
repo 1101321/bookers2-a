@@ -28,7 +28,6 @@ class UsersController < ApplicationController
       flash[:notice] = "You have updated user successfully."
       redirect_to user_path(@user.id)
     else
-      @books = Book.all
       render :edit
     end
   end
