@@ -39,9 +39,34 @@
                 </td>
               <% end %>
               
-            </tr>
+              <td>コメント数：<%= @book.book_comments.count %></td>
+              </tr>
         </tbody>
       </table>
+      
+      <p class="mb-3 d-flex align-items-center">
+        <% @book.book_comments.each do |book_comment| %>
+          <%= link_to user_path(book_comment.user.id) do %>
+            <p><%= attachment_image_tag @book.user, :profile_image, fallback: "no_image.jpg", size: "40x40"%></p>
+            <%= book_comment.user.name %>
+          <% end %>
+
+          <%= book_comment.comment %>
+          
+          <% if book_comment.user.id == current_user.id %>
+            <%= link_to "Destroy", book_book_comments_path(book_comment), class: "btn btn-sm btn-danger", method: :delete %>
+          <% end %>
+          
+        <% end %>
+      </p>
+        
+      <div>
+        <%= form_with(model:[@book, @book_comment], local: true) do |f| %>
+          <%= f.text_area :comment, cols:'100', rows:'5' %></br>
+          <%= f.submit "送信" %>
+        <% end %>
+      </div>
+            
     </div>
     
   </div>
