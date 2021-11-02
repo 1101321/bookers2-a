@@ -4,9 +4,9 @@
 
 <div class="container mt-3">
   <div class="row">
-    
+
     <%= render 'books/list', user: @user, book: @book_new %>
-    
+
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
       <table class="table">
@@ -24,26 +24,26 @@
                 <td><%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-sm btn-success" %></td>
                 <td><%= link_to "Destroy", book_path(@book), class: "btn btn-sm btn-danger", method: :delete %></td>
               <% end %>
-              
+
               <% if @book.favorited_by?(current_user) %>
                 <td>
                   <%= link_to book_favorites_path(@book), method: :delete, remote: true do %>
                     ♥<%= @book.favorites.count %>
                   <% end %>
                 </td>
-              <% else %>  
+              <% else %>
                 <td>
                   <%= link_to book_favorites_path(@book), method: :post, remote: true do %>
                     ♡<%= @book.favorites.count %>
                   <% end %>
                 </td>
               <% end %>
-              
+
               <td>コメント数：<%= @book.book_comments.count %></td>
               </tr>
         </tbody>
       </table>
-      
+
       <p class="mb-3 d-flex align-items-center">
         <% @book.book_comments.each do |book_comment| %>
           <%= link_to user_path(book_comment.user.id) do %>
@@ -52,22 +52,22 @@
           <% end %>
 
           <%= book_comment.comment %>
-          
+
           <% if book_comment.user.id == current_user.id %>
             <%= link_to "Destroy", book_book_comments_path(book_comment), class: "btn btn-sm btn-danger", method: :delete %>
           <% end %>
-          
+
         <% end %>
       </p>
-        
+
       <div>
         <%= form_with(model:[@book, @book_comment], local: true) do |f| %>
           <%= f.text_area :comment, cols:'100', rows:'5' %></br>
           <%= f.submit "送信" %>
         <% end %>
       </div>
-            
+
     </div>
-    
+
   </div>
 </div>
