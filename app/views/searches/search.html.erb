@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="col-xs-12">
+    
+    <% if @model == "user" %>
+      <h2>User search for "<%= @value %>"</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Introduction</th>
+          </tr>
+        </thead>
+      <% @dates.each do |user| %>
+        <tbody>
+          <tr>
+            <td><%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", size: "40x40" %></td>
+            <td><%= user.name %></td>
+            <td><%= user.introduction %></td>
+          </tr>
+        </tbody>
+      <% end %>
+      </table>
+    <% elsif @model == "book" %>
+      <h2>Book search for "<%= @value %>"</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+      <% @dates.each do |book, user| %>
+        <tbody>
+          <tr>
+            <td><%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", size: "40x40" %></td>
+            <td><%= book.title %></td>
+            <td><%= book.body %></td>
+          </tr>
+        </tbody>
+      <% end %>
+      </table>
+    <% end %>
+  </div>
+</div>
