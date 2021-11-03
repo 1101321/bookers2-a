@@ -5,5 +5,5 @@
 <% else %>
     <%= link_to book_favorites_path(book), method: :post, remote: true do %>
       ♡<%= book.favorites.count %>
-      <% end %>
+    <% end %>
 <% end %>
