@@ -7,7 +7,7 @@
           <%= book_comment.comment %>
 
           <% if book_comment.user.id == current_user.id %>
-            <%= link_to "Destroy", book_book_comments_path(book_comment), class: "btn btn-sm btn-danger", method: :delete %>
+            <%= link_to "Destroy", book_book_comments_path(book_comment), class: "btn btn-sm btn-danger", method: :delete, remote: true %>
           <% end %>
 
         <% end %>
