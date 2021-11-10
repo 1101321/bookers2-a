@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings'
     get 'followers' => 'relationships#followers'
+    resources :messages, only: [:create]
+    resources :rooms, only: [:create, :show]
   end
 
   get '/search' => 'searches#search'
